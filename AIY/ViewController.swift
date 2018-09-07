@@ -39,7 +39,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("Not sure what to do");
+        print("Not sure");
     }
     
     
