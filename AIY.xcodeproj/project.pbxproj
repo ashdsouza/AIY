@@ -13,6 +13,8 @@
 		2BC25F64213F0EEA00943CB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BC25F63213F0EEA00943CB5 /* Assets.xcassets */; };
 		2BC25F67213F0EEA00943CB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC25F65213F0EEA00943CB5 /* LaunchScreen.storyboard */; };
 		2BC25F72213F0EEA00943CB5 /* AIYTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC25F71213F0EEA00943CB5 /* AIYTests.swift */; };
+		2BFD744921408058007781B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFD744821408058007781B5 /* User.swift */; };
+		2BFD744D2141B10C007781B5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFD744C2141B10C007781B5 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		2BC25F6D213F0EEA00943CB5 /* AIYTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIYTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC25F71213F0EEA00943CB5 /* AIYTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIYTests.swift; sourceTree = "<group>"; };
 		2BC25F73213F0EEA00943CB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BFD744821408058007781B5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2BFD744C2141B10C007781B5 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = ../RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +81,10 @@
 		2BC25F5B213F0EEA00943CB5 /* AIY */ = {
 			isa = PBXGroup;
 			children = (
+				2BFD744E2141B190007781B5 /* View Controllers */,
 				2BC25F5C213F0EEA00943CB5 /* AppDelegate.swift */,
 				2BC25F5E213F0EEA00943CB5 /* ViewController.swift */,
+				2BFD744821408058007781B5 /* User.swift */,
 				2BC25F60213F0EEA00943CB5 /* Main.storyboard */,
 				2BC25F63213F0EEA00943CB5 /* Assets.xcassets */,
 				2BC25F65213F0EEA00943CB5 /* LaunchScreen.storyboard */,
@@ -94,6 +100,14 @@
 				2BC25F73213F0EEA00943CB5 /* Info.plist */,
 			);
 			path = AIYTests;
+			sourceTree = "<group>";
+		};
+		2BFD744E2141B190007781B5 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2BFD744C2141B10C007781B5 /* RegisterViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +215,8 @@
 			files = (
 				2BC25F5F213F0EEA00943CB5 /* ViewController.swift in Sources */,
 				2BC25F5D213F0EEA00943CB5 /* AppDelegate.swift in Sources */,
+				2BFD744921408058007781B5 /* User.swift in Sources */,
+				2BFD744D2141B10C007781B5 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +422,7 @@
 				2BC25F78213F0EEA00943CB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2BC25F79213F0EEA00943CB5 /* Build configuration list for PBXNativeTarget "AIYTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +431,7 @@
 				2BC25F7B213F0EEA00943CB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

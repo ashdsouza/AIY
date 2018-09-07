@@ -33,4 +33,21 @@ class AIYTests: XCTestCase {
         }
     }
     
+    //Initialize a User when Sign Up is complete with valid parameters
+    func testUserSignUpFails() {
+        let emptyName = User.init(name: "", loginUsername: "test", loginPassword: "test", photo: nil)
+        XCTAssertNil(emptyName);
+        
+        let emptyUsername = User.init(name: "Test Test", loginUsername: "", loginPassword: "test", photo: nil)
+        XCTAssertNil(emptyUsername);
+        
+        let emptyPassword = User.init(name: "Test Test", loginUsername: "test", loginPassword: "", photo: nil)
+        XCTAssertNil(emptyPassword);
+    }
+    
+    func testUserSignUpPasses() {
+        let validUserData = User.init(name: "Test Test", loginUsername: "test", loginPassword: "test", photo: nil)
+        XCTAssertNotNil(validUserData);
+    }
+    
 }
