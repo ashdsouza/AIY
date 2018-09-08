@@ -22,6 +22,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="w17-1D-v3E">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="Voa-KH-LWs">
                                 <rect key="frame" x="16" y="114" width="343" height="372.5"/>
                                 <subviews>
@@ -94,6 +98,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="TfV-yC-Zpd"/>
                     <connections>
+                        <outlet property="loginButton" destination="FZf-aQ-vu5" id="F4n-7h-6h8"/>
                         <outlet property="loginError" destination="ryf-a5-ljy" id="3Fc-PC-OcT"/>
                         <outlet property="password" destination="xhw-pf-c5n" id="Bg0-Do-cxl"/>
                         <outlet property="username" destination="xfv-43-IdC" id="t8O-Rl-ZVR"/>
@@ -101,7 +106,56 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="860" y="137.18140929535232"/>
+            <point key="canvasLocation" x="725.60000000000002" y="-59.820089955022496"/>
+        </scene>
+        <!--Welcome View Controller-->
+        <scene sceneID="rIz-xh-loQ">
+            <objects>
+                <viewController storyboardIdentifier="welcomeController" id="du0-Dd-Aua" customClass="WelcomeViewController" customModule="AIY" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oLj-5T-Ok0"/>
+                        <viewControllerLayoutGuide type="bottom" id="siB-9k-Yex"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mrQ-CN-lx6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="tvu-m2-Gsy">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gdv-Hi-SfK">
+                                <rect key="frame" x="16" y="90" width="343" height="39.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdU-DL-rF4">
+                                        <rect key="frame" x="0.0" y="0.0" width="161.5" height="39.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                        <color key="textColor" red="0.82428216040000002" green="0.49323572380000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBt-5Z-qe3">
+                                        <rect key="frame" x="181.5" y="0.0" width="161.5" height="39.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.81563112000000004" green="1" blue="0.88284678409999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="gdv-Hi-SfK" firstAttribute="leading" secondItem="mrQ-CN-lx6" secondAttribute="leadingMargin" id="UZ2-ap-NUw"/>
+                            <constraint firstItem="gdv-Hi-SfK" firstAttribute="top" secondItem="oLj-5T-Ok0" secondAttribute="bottom" constant="70" id="V0B-8m-8SG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gdv-Hi-SfK" secondAttribute="trailing" id="bUA-xR-Z6a"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="registeredUser" destination="IBt-5Z-qe3" id="q2o-wS-2Gu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gcT-dZ-S4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1613.5999999999999" y="641.82908545727139"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="fI5-NS-y8d">
@@ -115,6 +169,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="fJT-0V-ex2">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="3dA-ox-ZOi">
                                 <rect key="frame" x="16" y="114" width="343" height="523"/>
                                 <subviews>
@@ -248,7 +306,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1877.5999999999999" y="137.18140929535232"/>
+            <point key="canvasLocation" x="2093.5999999999999" y="-81.409295352323838"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="G3G-ta-rLE">
@@ -270,6 +328,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="background" width="640" height="960"/>
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
 </document>

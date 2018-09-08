@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginError: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +43,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         print("Not sure..");
     }
     
+    //function to navigate to Welcome page after successful login is complete
+    func navigateToWelcomeController(Sender: UIButton!, _ nameTest: String) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+        let welcomeController = storyBoard.instantiateViewController(withIdentifier: "welcomeController") as! WelcomeViewController
+        
+        welcomeController.userName = nameTest;
+        self.present(welcomeController, animated: true, completion: nil)
+    }
+    
     
     //MARK: Actions
     @IBAction func loginUser(_ sender: UIButton) {
         loginError.textColor = UIColor.red;
-        
-        //TODO: Handle Empty Username and Not Empty Password without additional else if case ???
         
         //Check if both fields are empty, either username or password is empty
         if((username.text?.isEmpty ?? true) && (password.text?.isEmpty ?? true)) {            loginError.isHidden = false;
@@ -58,19 +66,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
         } else if (password.text?.isEmpty ?? true) {
             loginError.isHidden = false;
             loginError.text = "Please enter password.";
-        }
-        
-        //Logic to check if the user is registered
-        let userTest = "test";
-        let passTest = "test";
-            
-        //TODO: Make a call to Get the registered user and compare
-            
-        if((username.text != userTest) || (password.text != passTest)) {
-            loginError.isHidden = false;
-            loginError.text = "No user with credentials.";
         } else {
-            loginError.isHidden = true;
+            //Logic to check if the user is registered
+            let userTest = "test";
+            let passTest = "test";
+            let nameTest = "Test";
+            
+            //TODO: Make a call to Get the registered user and compare
+            
+            if((username.text != userTest) || (password.text != passTest)) {
+                loginError.isHidden = false;
+                loginError.text = "No user with credentials.";
+            } else {
+                loginError.isHidden = true;
+                navigateToWelcomeController(Sender: loginButton, nameTest);
+            }
         }
     }
 }

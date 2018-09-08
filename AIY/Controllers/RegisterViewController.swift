@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import CoreData
 
 class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -20,6 +21,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var register: UIButton!
     
     var user: User?
+    var managedObjectContext: NSManagedObjectContext? = nil;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +90,25 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         self.present(loginController, animated: true, completion: nil)
     }
     
+//    func storeUserData(User: User!) {
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+//        let context = appDelegate.persistentContainer.viewContext
+//        //            let newUser = Users(context: context);
+//        let entity = NSEntityDescription.entity(forEntityName: "Users", in: context);
+//        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+//        
+//        newUser.setValue(user?.name, forKey: "name")
+//        newUser.setValue(user?.loginUsername, forKey: "loginUsername")
+//        newUser.setValue(user?.loginPassword, forKey: "loginPassword")
+//        //TODO: store the photo
+//        
+//        do {
+//            try context.save()
+//        } catch {
+//            print("Failed to save user")
+//        }
+//    }
+    
     @IBAction func registerUser(_ sender: UIButton) {
         if (name.text?.isEmpty ?? true || loginUsername.text?.isEmpty ?? true || loginPassword.text?.isEmpty ?? true) {
             registerError.isHidden = false;
@@ -102,7 +123,53 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             let photo = self.photo.image;
             
             print("Storing user data");
-            user = User(name: name!, loginUsername: loginUsername!, loginPassword: loginPassword!, photo: photo);
+            user = User(name: name!, loginUsername: loginUsername!, loginPassword: loginPassword!, photo: photo)!;
+            
+            //store data in DB
+//            storeUserData(User: user);
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+            let context = appDelegate.persistentContainer.viewContext
+//            let newUser = Users(context: context);
+            let entity = NSEntityDescription.entity(forEntityName: "Users", in: context);
+            let newUser = NSManagedObject(entity: entity!, insertInto: context)
+            
+            newUser.setValue(name, forKey: "name")
+            newUser.setValue(loginUsername, forKey: "loginUsername")
+            newUser.setValue(loginPassword, forKey: "loginPassword")
+            //TODO: store the photo
+            
+            do {
+                print("Trying to same")
+                try context.save()
+                } catch {
+                    print("Failed to save user")
+                    let nserror = error as NSError
+                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+            
+            var usersSaved: [Users] = []
+            
+            do {
+                usersSaved = try context.fetch(Users.fetchRequest())
+            } catch {
+                print("Failed to fetch users")
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+            
+            
+            //retrieve data
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Users");
+            request.returnsObjectsAsFaults = false
+            do {
+                let result = try context.fetch(request)
+                print("Trying to fetch")
+                for data in result as! [NSManagedObject] {
+                    print(data.value(forKey: "name") as! String)
+                }
+            } catch {
+                print("Failed")
+            }
             
             //TODO: Either navigate back to Login page or LoggedIn User Welcome page
             backToLoginController(Sender: register);

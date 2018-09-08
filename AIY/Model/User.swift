@@ -14,7 +14,7 @@ class User {
     var name: String;
     var loginUsername: String;
     var loginPassword: String;
-    var photo: UIImage?;
+    var photo: UIImage? = nil;
     
     //MARK: Initialization
     init?(name: String, loginUsername: String, loginPassword: String, photo: UIImage?) {

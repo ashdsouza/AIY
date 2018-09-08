@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B09FAF72142FC3700B7958A /* AIY.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B09FAF52142FC3700B7958A /* AIY.xcdatamodeld */; };
+		2B09FAF9214331C400B7958A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B09FAF8214331C400B7958A /* WelcomeViewController.swift */; };
 		2B7A2E31214227C5008C668E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A2E2F214227C5008C668E /* RegisterViewController.swift */; };
 		2B7A2E32214227C5008C668E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A2E30214227C5008C668E /* ViewController.swift */; };
 		2B7A2E35214227D1008C668E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A2E34214227D1008C668E /* User.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B09FAF62142FC3700B7958A /* AIY.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AIY.xcdatamodel; sourceTree = "<group>"; };
+		2B09FAF8214331C400B7958A /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomeViewController.swift; path = Controllers/WelcomeViewController.swift; sourceTree = "<group>"; };
 		2B7A2E2F214227C5008C668E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2B7A2E30214227C5008C668E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2B7A2E34214227D1008C668E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -101,7 +105,9 @@
 				2B7A2E33214227D1008C668E /* Model */,
 				2B7A2E2E214227C5008C668E /* Controllers */,
 				2BC25F5C213F0EEA00943CB5 /* AppDelegate.swift */,
+				2B09FAF52142FC3700B7958A /* AIY.xcdatamodeld */,
 				2BC25F60213F0EEA00943CB5 /* Main.storyboard */,
+				2B09FAF8214331C400B7958A /* WelcomeViewController.swift */,
 				2BC25F63213F0EEA00943CB5 /* Assets.xcassets */,
 				2BC25F65213F0EEA00943CB5 /* LaunchScreen.storyboard */,
 				2BC25F68213F0EEA00943CB5 /* Info.plist */,
@@ -224,7 +230,9 @@
 				2B7A2E32214227C5008C668E /* ViewController.swift in Sources */,
 				2B7A2E31214227C5008C668E /* RegisterViewController.swift in Sources */,
 				2BC25F5D213F0EEA00943CB5 /* AppDelegate.swift in Sources */,
+				2B09FAF9214331C400B7958A /* WelcomeViewController.swift in Sources */,
 				2B7A2E35214227D1008C668E /* User.swift in Sources */,
+				2B09FAF72142FC3700B7958A /* AIY.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +450,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2B09FAF52142FC3700B7958A /* AIY.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2B09FAF62142FC3700B7958A /* AIY.xcdatamodel */,
+			);
+			currentVersion = 2B09FAF62142FC3700B7958A /* AIY.xcdatamodel */;
+			path = AIY.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2BC25F51213F0EE900943CB5 /* Project object */;
 }
