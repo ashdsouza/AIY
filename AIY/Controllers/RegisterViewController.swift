@@ -90,24 +90,48 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         self.present(loginController, animated: true, completion: nil)
     }
     
-//    func storeUserData(User: User!) {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-//        let context = appDelegate.persistentContainer.viewContext
-//        //            let newUser = Users(context: context);
-//        let entity = NSEntityDescription.entity(forEntityName: "Users", in: context);
-//        let newUser = NSManagedObject(entity: entity!, insertInto: context)
-//        
-//        newUser.setValue(user?.name, forKey: "name")
-//        newUser.setValue(user?.loginUsername, forKey: "loginUsername")
-//        newUser.setValue(user?.loginPassword, forKey: "loginPassword")
-//        //TODO: store the photo
-//        
+    func storeUserData(_ name: String, _ loginUsername: String, _ loginPassword: String, _ photo: Data) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Users", in: context);
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        
+        newUser.setValue(name, forKey: "name")
+        newUser.setValue(loginUsername, forKey: "loginUsername")
+        newUser.setValue(loginPassword, forKey: "loginPassword")
+        newUser.setValue(photo, forKey: "photo")
+        
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save user")
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        
+        //retrieve data
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Users");
+//        request.returnsObjectsAsFaults = false
 //        do {
-//            try context.save()
+//            let result = try context.fetch(request)
+//            print("Trying to fetch")
+//            for data in result as! [NSManagedObject] {
+//                print(data.value(forKey: "name") as! String)
+//                print(data.value(forKey: "loginUsername") as! String)
+//                print(data.value(forKey: "loginPassword") as! String)
+//                if let rPhoto = data.value(forKey: "photo") {
+//                    print(data.value(forKey: "photo") as! NSData);
+//                } else {
+//                    print("No photo for this user");
+//                }
+//            }
 //        } catch {
-//            print("Failed to save user")
+//            print("Failed")
+//            let nserror = error as NSError
+//            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
 //        }
-//    }
+    }
     
     @IBAction func registerUser(_ sender: UIButton) {
         if (name.text?.isEmpty ?? true || loginUsername.text?.isEmpty ?? true || loginPassword.text?.isEmpty ?? true) {
@@ -120,59 +144,21 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             let name = self.name.text;
             let loginUsername = self.loginUsername.text;
             let loginPassword = self.loginPassword.text;
-            let photo = self.photo.image;
             
-            print("Storing user data");
-            user = User(name: name!, loginUsername: loginUsername!, loginPassword: loginPassword!, photo: photo)!;
+            guard let photo = UIImagePNGRepresentation(self.photo.image!) else {
+                print("Failed to convert PNG image")
+                return
+            }
             
             //store data in DB
-//            storeUserData(User: user);
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-            let context = appDelegate.persistentContainer.viewContext
-//            let newUser = Users(context: context);
-            let entity = NSEntityDescription.entity(forEntityName: "Users", in: context);
-            let newUser = NSManagedObject(entity: entity!, insertInto: context)
+            storeUserData(name!, loginUsername!, loginPassword!, photo);
+
+            //navigate to LoggedIn User Welcome page
+            let storyBoard: UIStoryboard = UIStoryboard.init(name: "Main", bundle: nil);
+            let welcomeController = storyBoard.instantiateViewController(withIdentifier: "welcomeController") as! WelcomeViewController
             
-            newUser.setValue(name, forKey: "name")
-            newUser.setValue(loginUsername, forKey: "loginUsername")
-            newUser.setValue(loginPassword, forKey: "loginPassword")
-            //TODO: store the photo
-            
-            do {
-                print("Trying to same")
-                try context.save()
-                } catch {
-                    print("Failed to save user")
-                    let nserror = error as NSError
-                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-            
-            var usersSaved: [Users] = []
-            
-            do {
-                usersSaved = try context.fetch(Users.fetchRequest())
-            } catch {
-                print("Failed to fetch users")
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-            
-            
-            //retrieve data
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Users");
-            request.returnsObjectsAsFaults = false
-            do {
-                let result = try context.fetch(request)
-                print("Trying to fetch")
-                for data in result as! [NSManagedObject] {
-                    print(data.value(forKey: "name") as! String)
-                }
-            } catch {
-                print("Failed")
-            }
-            
-            //TODO: Either navigate back to Login page or LoggedIn User Welcome page
-            backToLoginController(Sender: register);
+            welcomeController.userName = name!;
+            self.present(welcomeController, animated: true, completion: nil)
         }
     }
 }
