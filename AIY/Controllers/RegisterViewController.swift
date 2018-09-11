@@ -19,9 +19,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var registerError: UILabel!
     @IBOutlet weak var register: UIButton!
-    
-    var user: User?
-    var managedObjectContext: NSManagedObjectContext? = nil;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,21 +91,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         let context = appDelegate.persistentContainer.viewContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "Users", in: context);
-        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        let newUser = Users(context: context);
+        newUser.name = name;
+        newUser.loginUsername = loginUsername;
+        newUser.loginPassword = loginPassword;
+        newUser.photo = photo as NSData?;
         
-        newUser.setValue(name, forKey: "name")
-        newUser.setValue(loginUsername, forKey: "loginUsername")
-        newUser.setValue(loginPassword, forKey: "loginPassword")
-        newUser.setValue(photo, forKey: "photo")
-        
-        do {
-            try context.save()
-        } catch {
-            print("Failed to save user")
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
+        appDelegate.saveContext();
         
         //retrieve data
 //        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Users");
@@ -123,7 +112,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
 //                if let rPhoto = data.value(forKey: "photo") {
 //                    print(data.value(forKey: "photo") as! NSData);
 //                } else {
-//                    print("No photo for this user");
+//                    print("  No photo for this user");
 //                }
 //            }
 //        } catch {
@@ -154,6 +143,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             storeUserData(name!, loginUsername!, loginPassword!, photo);
 
             //navigate to LoggedIn User Welcome page
+            //TODO: call function in LoginController
             let storyBoard: UIStoryboard = UIStoryboard.init(name: "Main", bundle: nil);
             let welcomeController = storyBoard.instantiateViewController(withIdentifier: "welcomeController") as! WelcomeViewController
             

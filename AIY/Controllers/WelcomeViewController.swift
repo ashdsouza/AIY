@@ -15,7 +15,6 @@ class WelcomeViewController: UIViewController {
     var userName = "";
     
     override func viewDidLoad() {
-//        registeredUser.text = "";
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.

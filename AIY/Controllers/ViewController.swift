@@ -43,6 +43,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         print("Not sure..");
     }
     
+    //TODO: Move this function to a Utility class
     //function to navigate to Welcome page after successful login is complete
     func navigateToWelcomeController(Sender: UIButton!, _ nameTest: String) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
