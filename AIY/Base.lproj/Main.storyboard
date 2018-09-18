@@ -107,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="725.60000000000002" y="-59.820089955022496"/>
+            <point key="canvasLocation" x="242" y="-110"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="rIz-xh-loQ">
@@ -265,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gcT-dZ-S4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1085.5999999999999" y="634.632683658171"/>
+            <point key="canvasLocation" x="1292" y="635"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="fI5-NS-y8d">
@@ -436,7 +436,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2093.5999999999999" y="-81.409295352323838"/>
+            <point key="canvasLocation" x="1294" y="-112"/>
         </scene>
         <!--New Item-->
         <scene sceneID="vSf-Nh-tdi">
@@ -557,7 +557,7 @@
                 </tapGestureRecognizer>
                 <exit id="PGb-jQ-wKv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3156" y="634.632683658171"/>
+            <point key="canvasLocation" x="3122" y="635"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="G3G-ta-rLE">
@@ -575,7 +575,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uc-oZ-CT8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-79.200000000000003" y="137.18140929535232"/>
+            <point key="canvasLocation" x="-722" y="-110"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YcC-26-h8B">
