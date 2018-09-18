@@ -10,7 +10,7 @@ import UIKit
 import os.log
 import CoreData
 
-class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     //MARK: Properties
     @IBOutlet weak var name: UITextField!
@@ -19,16 +19,61 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var registerError: UILabel!
     @IBOutlet weak var register: UIButton!
+    @IBOutlet weak var buyerSellerSwitch: UISwitch!
+    @IBOutlet weak var category: UIPickerView!
+    
+    var categories = [String]()
+    var userType: Bool!
+    var categoryNameSelected: String! = nil
+    let imagePicker = UIImagePickerController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         registerError.isHidden = true;
+        buyerSellerSwitch.isOn = false;
+        toggleSwitch()
+        
+        //triggers the sellerSelected function when the switch is toggeled
+        buyerSellerSwitch.addTarget(self, action: #selector(sellerSelected(_:)), for: UIControlEvents.valueChanged)
         
         name.delegate = self;
         loginUsername.delegate = self;
         loginPassword.delegate = self;
+        category.delegate = self;
+        category.dataSource = self;
+        imagePicker.delegate = self;
+        
+        //TODO: Find an place to add new categories
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+//        let context = appDelegate.persistentContainer.viewContext
+//        
+//        let cat = Category(context: context);
+//        cat.name = "Items";
+//        
+//        appDelegate.saveContext()
+//        
+//        let cat2 = Category(context: context);
+//        cat2.name = "Cars";
+//        
+//        appDelegate.saveContext()
+//        
+//        let cat3 = Category(context: context);
+//        cat3.name = "Houses";
+//        
+//        appDelegate.saveContext()
+        
+        
+        let result = CoreDataUtility.getDataFromDB("Category")
+        for data in result as! [NSManagedObject] {
+            print(data.value(forKey: "name") as! String)
+            categories.append(data.value(forKey: "name") as! String)
+        }
+        
+        //TODO: Unless picker is toggeled, category is not selected. Fix this.
+        //set default as "Cars" for now
+        category.selectRow(1, inComponent: 0, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +92,24 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         super.prepare(for: segue, sender: sender);
     }
     
+    func toggleSwitch() {
+        if buyerSellerSwitch.isOn {
+            print("Seller Selected display category picker");
+            category.isHidden = false;
+            userType = true;
+        } else {
+            print("It is a Buyer. Hide category picker");
+            category.isHidden = true;
+            userType = false;
+        }
+    }
+    
     //MARK: Actions
+    //display the category of seller selection if it is seller
+    @IBAction func sellerSelected(_ sender: UISwitch) {
+        toggleSwitch()
+    }
+    
     //Lets user pick an image from the photo library
     @IBAction func selectPhotoFromLibrary(_ sender: Any) {
         //Hide keyboard if image is tapped
@@ -62,6 +124,24 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         present(photoPickerController, animated: true, completion: nil);
     }
     
+    //MARK: Functions for Category Picker View
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categories.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categories[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryNameSelected = categories[row] as String
+    }
+    
+    //MARK: Functions for Image Picker
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         //Dismiss the picker if the user canceled.
         dismiss(animated: true, completion: nil);
@@ -87,39 +167,38 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         self.present(loginController, animated: true, completion: nil)
     }
     
-    func storeUserData(_ name: String, _ loginUsername: String, _ loginPassword: String, _ photo: Data) {
+    func storeUserData(_ photo: Data) {
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         let context = appDelegate.persistentContainer.viewContext
         
         let newUser = Users(context: context);
-        newUser.name = name;
-        newUser.loginUsername = loginUsername;
-        newUser.loginPassword = loginPassword;
+        newUser.name = self.name.text;
+        newUser.loginUsername = self.loginUsername.text;
+        newUser.loginPassword = self.loginPassword.text;
         newUser.photo = photo as NSData?;
+        newUser.type = userType;
+        newUser.category = categoryNameSelected;
         
         appDelegate.saveContext();
         
         //retrieve data
-//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Users");
-//        request.returnsObjectsAsFaults = false
-//        do {
-//            let result = try context.fetch(request)
-//            print("Trying to fetch")
-//            for data in result as! [NSManagedObject] {
-//                print(data.value(forKey: "name") as! String)
-//                print(data.value(forKey: "loginUsername") as! String)
-//                print(data.value(forKey: "loginPassword") as! String)
-//                if let rPhoto = data.value(forKey: "photo") {
-//                    print(data.value(forKey: "photo") as! NSData);
-//                } else {
-//                    print("  No photo for this user");
-//                }
+//        let result = getDataFromDB("Users")
+//        for data in result as! [NSManagedObject] {
+//            print(data.value(forKey: "name") as! String)
+//            print(data.value(forKey: "loginUsername") as! String)
+//            print(data.value(forKey: "loginPassword") as! String)
+//            print(data.value(forKey: "type") as! Bool)
+//            guard let cat = data.value(forKey: "category") else {
+//                print("Nothing set for category")
+//                continue
 //            }
-//        } catch {
-//            print("Failed")
-//            let nserror = error as NSError
-//            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//            print(cat)
 //        }
+    }
+    
+    func saveSessionData(_ uname: String) {
+        UserDefaults.standard.set(uname, forKey: "userName")
     }
     
     @IBAction func registerUser(_ sender: UIButton) {
@@ -130,24 +209,20 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         } else {
             registerError.isHidden = true;
             
-            let name = self.name.text;
-            let loginUsername = self.loginUsername.text;
-            let loginPassword = self.loginPassword.text;
-            
             guard let photo = UIImagePNGRepresentation(self.photo.image!) else {
                 print("Failed to convert PNG image")
                 return
             }
             
             //store data in DB
-            storeUserData(name!, loginUsername!, loginPassword!, photo);
+            storeUserData(photo)
+            saveSessionData(loginUsername.text!)
 
             //navigate to LoggedIn User Welcome page
             //TODO: call function in LoginController
             let storyBoard: UIStoryboard = UIStoryboard.init(name: "Main", bundle: nil);
             let welcomeController = storyBoard.instantiateViewController(withIdentifier: "welcomeController") as! WelcomeViewController
             
-            welcomeController.userName = name!;
             self.present(welcomeController, animated: true, completion: nil)
         }
     }

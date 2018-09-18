@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
@@ -49,17 +50,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
         let welcomeController = storyBoard.instantiateViewController(withIdentifier: "welcomeController") as! WelcomeViewController
         
-        welcomeController.userName = nameTest;
         self.present(welcomeController, animated: true, completion: nil)
     }
     
+    func saveSessionData(_ uname: String) {
+        UserDefaults.standard.set(uname, forKey: "userName")
+    }
     
     //MARK: Actions
     @IBAction func loginUser(_ sender: UIButton) {
         loginError.textColor = UIColor.red;
         
         //Check if both fields are empty, either username or password is empty
-        if((username.text?.isEmpty ?? true) && (password.text?.isEmpty ?? true)) {            loginError.isHidden = false;
+        if((username.text?.isEmpty ?? true) && (password.text?.isEmpty ?? true)) {
+            loginError.isHidden = false;
             loginError.text = "Please enter valid credentials.";
         } else if (username.text?.isEmpty ?? true) {
             loginError.isHidden = false;
@@ -69,18 +73,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
             loginError.text = "Please enter password.";
         } else {
             //Logic to check if the user is registered
-            let userTest = "test";
-            let passTest = "test";
-            let nameTest = "Test";
+            guard let uname = username.text else {
+                return
+            }
+            guard let pass = password.text else {
+                return
+            }
             
-            //TODO: Make a call to Get the registered user and compare
-            
-            if((username.text != userTest) || (password.text != passTest)) {
-                loginError.isHidden = false;
-                loginError.text = "No user with credentials.";
-            } else {
+            let user: [Users] = CoreDataUtility.checkIfRegistered(uname, pass)
+            if user.count > 0 {
                 loginError.isHidden = true;
-                navigateToWelcomeController(Sender: loginButton, nameTest);
+                
+                //save data in session
+                saveSessionData(uname)
+                
+                navigateToWelcomeController(Sender: loginButton, uname);
+            } else {
+                loginError.isHidden = false;
+                loginError.text = "User not registered.";
             }
         }
     }
