@@ -26,9 +26,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     var userType: Bool!
     var categoryNameSelected: String! = nil
     let imagePicker = UIImagePickerController()
-    
-//    var appDelegate: AppDelegate!
-//    var context: NSManagedObjectContext!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +34,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         registerError.isHidden = true;
         buyerSellerSwitch.isOn = false;
         toggleSwitch()
-        
-//        appDelegate = UIApplication.shared.delegate as! AppDelegate;
-//        context = appDelegate.persistentContainer.viewContext
         
         //triggers the sellerSelected function when the switch is toggeled
         buyerSellerSwitch.addTarget(self, action: #selector(sellerSelected(_:)), for: UIControlEvents.valueChanged)
@@ -51,7 +45,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         category.dataSource = self;
         imagePicker.delegate = self;
         
-        //TODO: Fill Data in Category Table so it can show up here
+        //TODO: Find an place to add new categories
 //        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
 //        let context = appDelegate.persistentContainer.viewContext
 //        
@@ -71,14 +65,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
 //        appDelegate.saveContext()
         
         
-        let result = getDataFromDB("Category")
+        let result = CoreDataUtility.getDataFromDB("Category")
         for data in result as! [NSManagedObject] {
             print(data.value(forKey: "name") as! String)
             categories.append(data.value(forKey: "name") as! String)
         }
-//        categories.append("Items")
-//        categories.append("Car")
-//        categories.append("Houses")
         
         //TODO: Unless picker is toggeled, category is not selected. Fix this.
         //set default as "Cars" for now
@@ -110,23 +101,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             print("It is a Buyer. Hide category picker");
             category.isHidden = true;
             userType = false;
-        }
-    }
-    
-    func getDataFromDB(_ entityName: String) -> [Any] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName);
-        request.returnsObjectsAsFaults = false
-        do {
-            print("Fetching from DB")
-            let result = try context.fetch(request)
-            return result
-        } catch {
-            print("Failed to fetch")
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
     }
     
@@ -221,27 +195,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
 //            }
 //            print(cat)
 //        }
-        
-//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Users");
-//        request.returnsObjectsAsFaults = false
-//        do {
-//            let result = try context.fetch(request)
-//            print("Trying to fetch")
-//            for data in result as! [NSManagedObject] {
-//                print(data.value(forKey: "name") as! String)
-//                print(data.value(forKey: "loginUsername") as! String)
-//                print(data.value(forKey: "loginPassword") as! String)
-//                if let rPhoto = data.value(forKey: "photo") {
-//                    print(data.value(forKey: "photo") as! NSData);
-//                } else {
-//                    print("  No photo for this user");
-//                }
-//            }
-//        } catch {
-//            print("Failed")
-//            let nserror = error as NSError
-//            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-//        }
+    }
+    
+    func saveSessionData(_ uname: String) {
+        UserDefaults.standard.set(uname, forKey: "userName")
     }
     
     @IBAction func registerUser(_ sender: UIButton) {
@@ -258,14 +215,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             }
             
             //store data in DB
-            storeUserData(photo);
+            storeUserData(photo)
+            saveSessionData(loginUsername.text!)
 
             //navigate to LoggedIn User Welcome page
             //TODO: call function in LoginController
             let storyBoard: UIStoryboard = UIStoryboard.init(name: "Main", bundle: nil);
             let welcomeController = storyBoard.instantiateViewController(withIdentifier: "welcomeController") as! WelcomeViewController
             
-            welcomeController.userName = self.loginUsername.text!;
             self.present(welcomeController, animated: true, completion: nil)
         }
     }

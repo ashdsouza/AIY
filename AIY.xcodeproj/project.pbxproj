@@ -17,6 +17,9 @@
 		2BC25F64213F0EEA00943CB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BC25F63213F0EEA00943CB5 /* Assets.xcassets */; };
 		2BC25F67213F0EEA00943CB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC25F65213F0EEA00943CB5 /* LaunchScreen.storyboard */; };
 		2BC25F72213F0EEA00943CB5 /* AIYTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC25F71213F0EEA00943CB5 /* AIYTests.swift */; };
+		2BF35DD6214B1075002FFB1C /* CoreDataUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DD5214B1075002FFB1C /* CoreDataUtility.swift */; };
+		2BF35DD8214C43E9002FFB1C /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DD7214C43E9002FFB1C /* AddProductViewController.swift */; };
+		2BF35DDA2150716F002FFB1C /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DD92150716F002FFB1C /* ProductTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		2BC25F6D213F0EEA00943CB5 /* AIYTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIYTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC25F71213F0EEA00943CB5 /* AIYTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIYTests.swift; sourceTree = "<group>"; };
 		2BC25F73213F0EEA00943CB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BF35DD5214B1075002FFB1C /* CoreDataUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtility.swift; sourceTree = "<group>"; };
+		2BF35DD7214C43E9002FFB1C /* AddProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProductViewController.swift; path = Controllers/AddProductViewController.swift; sourceTree = "<group>"; };
+		2BF35DD92150716F002FFB1C /* ProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,11 +108,14 @@
 		2BC25F5B213F0EEA00943CB5 /* AIY */ = {
 			isa = PBXGroup;
 			children = (
+				2BF35DD4214B1025002FFB1C /* Utilities */,
 				2B7A2E33214227D1008C668E /* Model */,
 				2B7A2E2E214227C5008C668E /* Controllers */,
 				2BC25F5C213F0EEA00943CB5 /* AppDelegate.swift */,
 				2B09FAF52142FC3700B7958A /* AIY.xcdatamodeld */,
 				2BC25F60213F0EEA00943CB5 /* Main.storyboard */,
+				2BF35DD92150716F002FFB1C /* ProductTableViewCell.swift */,
+				2BF35DD7214C43E9002FFB1C /* AddProductViewController.swift */,
 				2B09FAF8214331C400B7958A /* WelcomeViewController.swift */,
 				2BC25F63213F0EEA00943CB5 /* Assets.xcassets */,
 				2BC25F65213F0EEA00943CB5 /* LaunchScreen.storyboard */,
@@ -122,6 +131,14 @@
 				2BC25F73213F0EEA00943CB5 /* Info.plist */,
 			);
 			path = AIYTests;
+			sourceTree = "<group>";
+		};
+		2BF35DD4214B1025002FFB1C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2BF35DD5214B1075002FFB1C /* CoreDataUtility.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,10 +246,13 @@
 			files = (
 				2B7A2E32214227C5008C668E /* ViewController.swift in Sources */,
 				2B7A2E31214227C5008C668E /* RegisterViewController.swift in Sources */,
+				2BF35DDA2150716F002FFB1C /* ProductTableViewCell.swift in Sources */,
+				2BF35DD8214C43E9002FFB1C /* AddProductViewController.swift in Sources */,
 				2BC25F5D213F0EEA00943CB5 /* AppDelegate.swift in Sources */,
 				2B09FAF9214331C400B7958A /* WelcomeViewController.swift in Sources */,
 				2B7A2E35214227D1008C668E /* User.swift in Sources */,
 				2B09FAF72142FC3700B7958A /* AIY.xcdatamodeld in Sources */,
+				2BF35DD6214B1075002FFB1C /* CoreDataUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
