@@ -53,8 +53,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.present(welcomeController, animated: true, completion: nil)
     }
     
-    func saveSessionData(_ uname: String) {
+    func saveSessionData(_ uname: String, _ type: Bool) {
         UserDefaults.standard.set(uname, forKey: "userName")
+        UserDefaults.standard.set(type, forKey: "userType")
     }
     
     //MARK: Actions
@@ -85,7 +86,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 loginError.isHidden = true;
                 
                 //save data in session
-                saveSessionData(uname)
+                saveSessionData(uname, user[0].type)
                 
                 navigateToWelcomeController(Sender: loginButton, uname);
             } else {

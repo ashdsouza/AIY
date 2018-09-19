@@ -19,9 +19,13 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var productTable: UITableView!
     var products = [Products]()
+    var indexOfSelectedProduct: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        productTable.delegate = self
+        productTable.dataSource = self
 
         // Do any additional setup after loading the view.
         guard let userNameSes = UserDefaults.standard.string(forKey: "userName") else {
@@ -30,22 +34,22 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         let user: Users = CoreDataUtility.getUserInfo(userNameSes)
-//        print(user.name as String?)
-//        print(user.type as Bool?)
-//        print(user.category as String?)
-        let profileImage: UIImage = getPhoto(user.photo!, 50)
+        let profileImage: UIImage = CoreDataUtility.getPhoto(user.photo!, 50)
         registeredUser.text = user.name
         profilePhoto.image = profileImage
         
         //Display "Add Product" button only if Buyer
+        //if Buyer then load all products added by that buyer
+        //if Seller then load all products in the Seller's category
+        let prods: [Products]
         if(user.type) {
             addProductButton.isHidden = true
+            prods = CoreDataUtility.getProductsInCategory(user.category!)
         } else {
             addProductButton.isHidden = false
+            prods = CoreDataUtility.loadProducts(userNameSes)
         }
         
-        //load all products for that user, if not products then hide the table view
-        let prods: [Products] = CoreDataUtility.loadProducts(userNameSes)
         if prods.count > 0 {
             products = prods
         } else {
@@ -72,16 +76,35 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.productTitle.text = prod.title
         cell.buyersPrice.text = String(prod.buyPrice)
         if (prod.photo != nil) {
-            cell.productImage.image = getPhoto(prod.photo!, 100)
+            cell.productImage.image = CoreDataUtility.getPhoto(prod.photo!, 100)
         }
         //TODO: Get bids for product and set the count here
         cell.productBidCount.text = String(0)
+        cell.accessoryType = .disclosureIndicator
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return products.count
+    }
+    
+    //this segue is called when a row is selected to get more Product Details
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowProductDetail" {
+            
+            let indexPath = productTable.indexPathForSelectedRow
+            let index = indexPath?.row
+            
+            print("Row \(index) selected")
+            print("Title \(products[index!].title)")
+            print("Cost \(products[index!].buyPrice)")
+            print("Cost \(products[index!].desc)")
+            
+            let nvc = segue.destination as! UINavigationController
+            let svc = nvc.topViewController as! ProductDetailsViewController
+            svc.productSelected = products[index!]
+        }
     }
     
     @IBAction func unwindToProductList(sender: UIStoryboardSegue) {
@@ -102,20 +125,4 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Pass the selected object to the new view controller.
     }
     */
-    
-    //Get user profile picture and resize it to display in 50x50
-    func getPhoto(_ photo: NSData, _ width: CGFloat) -> UIImage {
-        let pic: UIImage = UIImage(data: photo as Data)!
-        
-        //Resizing logic
-        let newWidth: CGFloat = width;
-        let scale = newWidth / pic.size.width
-        let newHeight = pic.size.height * scale
-        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-        pic.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage!
-    }
 }

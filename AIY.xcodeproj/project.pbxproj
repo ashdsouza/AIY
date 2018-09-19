@@ -20,6 +20,7 @@
 		2BF35DD6214B1075002FFB1C /* CoreDataUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DD5214B1075002FFB1C /* CoreDataUtility.swift */; };
 		2BF35DD8214C43E9002FFB1C /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DD7214C43E9002FFB1C /* AddProductViewController.swift */; };
 		2BF35DDA2150716F002FFB1C /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DD92150716F002FFB1C /* ProductTableViewCell.swift */; };
+		2BF35DDC21518F41002FFB1C /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DDB21518F41002FFB1C /* ProductDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		2BF35DD5214B1075002FFB1C /* CoreDataUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtility.swift; sourceTree = "<group>"; };
 		2BF35DD7214C43E9002FFB1C /* AddProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProductViewController.swift; path = Controllers/AddProductViewController.swift; sourceTree = "<group>"; };
 		2BF35DD92150716F002FFB1C /* ProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		2BF35DDB21518F41002FFB1C /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductDetailsViewController.swift; path = Controllers/ProductDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				2BC25F5C213F0EEA00943CB5 /* AppDelegate.swift */,
 				2B09FAF52142FC3700B7958A /* AIY.xcdatamodeld */,
 				2BC25F60213F0EEA00943CB5 /* Main.storyboard */,
+				2BF35DDB21518F41002FFB1C /* ProductDetailsViewController.swift */,
 				2BF35DD92150716F002FFB1C /* ProductTableViewCell.swift */,
 				2BF35DD7214C43E9002FFB1C /* AddProductViewController.swift */,
 				2B09FAF8214331C400B7958A /* WelcomeViewController.swift */,
@@ -247,6 +250,7 @@
 				2B7A2E32214227C5008C668E /* ViewController.swift in Sources */,
 				2B7A2E31214227C5008C668E /* RegisterViewController.swift in Sources */,
 				2BF35DDA2150716F002FFB1C /* ProductTableViewCell.swift in Sources */,
+				2BF35DDC21518F41002FFB1C /* ProductDetailsViewController.swift in Sources */,
 				2BF35DD8214C43E9002FFB1C /* AddProductViewController.swift in Sources */,
 				2BC25F5D213F0EEA00943CB5 /* AppDelegate.swift in Sources */,
 				2B09FAF9214331C400B7958A /* WelcomeViewController.swift in Sources */,

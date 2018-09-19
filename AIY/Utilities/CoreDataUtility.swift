@@ -82,4 +82,37 @@ class CoreDataUtility {
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
     }
+    
+    static func getPhoto(_ photo: NSData, _ width: CGFloat) -> UIImage {
+        let pic: UIImage = UIImage(data: photo as Data)!
+        
+        //Resizing logic
+        let newWidth: CGFloat = width;
+        let scale = newWidth / pic.size.width
+        let newHeight = pic.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        pic.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+    
+    static func getProductsInCategory(_ category: String) -> [Products] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Products")
+        request.predicate = NSPredicate(format: "category = %@", category)
+        request.returnsObjectsAsFaults = false
+        do {
+            print("Fetching from DB")
+            let result = try context.fetch(request) as! [Products]
+            return result
+        } catch {
+            print("Failed to fetch")
+            let nserror = error as NSError
+            fatalError("Failed to fetch user \(nserror), \(nserror.userInfo)")
+        }
+    }
 }

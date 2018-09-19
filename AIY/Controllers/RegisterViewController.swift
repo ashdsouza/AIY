@@ -197,8 +197,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
 //        }
     }
     
-    func saveSessionData(_ uname: String) {
+    func saveSessionData(_ uname: String, _ type: Bool) {
         UserDefaults.standard.set(uname, forKey: "userName")
+        UserDefaults.standard.set(type, forKey: "userType")
     }
     
     @IBAction func registerUser(_ sender: UIButton) {
@@ -216,7 +217,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             
             //store data in DB
             storeUserData(photo)
-            saveSessionData(loginUsername.text!)
+            saveSessionData(loginUsername.text!, userType)
 
             //navigate to LoggedIn User Welcome page
             //TODO: call function in LoginController
