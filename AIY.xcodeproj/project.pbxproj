@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2B09FAF72142FC3700B7958A /* AIY.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B09FAF52142FC3700B7958A /* AIY.xcdatamodeld */; };
 		2B09FAF9214331C400B7958A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B09FAF8214331C400B7958A /* WelcomeViewController.swift */; };
+		2B1200032154218E00197B67 /* BidsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1200022154218E00197B67 /* BidsTableViewController.swift */; };
+		2B120005215425D600197B67 /* BidsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B120004215425D600197B67 /* BidsTableViewCell.swift */; };
 		2B7A2E31214227C5008C668E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A2E2F214227C5008C668E /* RegisterViewController.swift */; };
 		2B7A2E32214227C5008C668E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A2E30214227C5008C668E /* ViewController.swift */; };
 		2B7A2E35214227D1008C668E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A2E34214227D1008C668E /* User.swift */; };
@@ -20,6 +22,9 @@
 		2BF35DD6214B1075002FFB1C /* CoreDataUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DD5214B1075002FFB1C /* CoreDataUtility.swift */; };
 		2BF35DD8214C43E9002FFB1C /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DD7214C43E9002FFB1C /* AddProductViewController.swift */; };
 		2BF35DDA2150716F002FFB1C /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DD92150716F002FFB1C /* ProductTableViewCell.swift */; };
+		2BF35DDC21518F41002FFB1C /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DDB21518F41002FFB1C /* ProductDetailsViewController.swift */; };
+		2BF35DDE2152E18B002FFB1C /* AddBidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DDD2152E18B002FFB1C /* AddBidViewController.swift */; };
+		2BF35DE0215309E7002FFB1C /* GeneralUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF35DDF215309E7002FFB1C /* GeneralUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,8 @@
 /* Begin PBXFileReference section */
 		2B09FAF62142FC3700B7958A /* AIY.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AIY.xcdatamodel; sourceTree = "<group>"; };
 		2B09FAF8214331C400B7958A /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomeViewController.swift; path = Controllers/WelcomeViewController.swift; sourceTree = "<group>"; };
+		2B1200022154218E00197B67 /* BidsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BidsTableViewController.swift; path = Controllers/BidsTableViewController.swift; sourceTree = "<group>"; };
+		2B120004215425D600197B67 /* BidsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BidsTableViewCell.swift; sourceTree = "<group>"; };
 		2B7A2E2F214227C5008C668E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2B7A2E30214227C5008C668E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2B7A2E34214227D1008C668E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -50,6 +57,9 @@
 		2BF35DD5214B1075002FFB1C /* CoreDataUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtility.swift; sourceTree = "<group>"; };
 		2BF35DD7214C43E9002FFB1C /* AddProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProductViewController.swift; path = Controllers/AddProductViewController.swift; sourceTree = "<group>"; };
 		2BF35DD92150716F002FFB1C /* ProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		2BF35DDB21518F41002FFB1C /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductDetailsViewController.swift; path = Controllers/ProductDetailsViewController.swift; sourceTree = "<group>"; };
+		2BF35DDD2152E18B002FFB1C /* AddBidViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddBidViewController.swift; path = Controllers/AddBidViewController.swift; sourceTree = "<group>"; };
+		2BF35DDF215309E7002FFB1C /* GeneralUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralUtility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +124,10 @@
 				2BC25F5C213F0EEA00943CB5 /* AppDelegate.swift */,
 				2B09FAF52142FC3700B7958A /* AIY.xcdatamodeld */,
 				2BC25F60213F0EEA00943CB5 /* Main.storyboard */,
+				2B120004215425D600197B67 /* BidsTableViewCell.swift */,
+				2B1200022154218E00197B67 /* BidsTableViewController.swift */,
+				2BF35DDD2152E18B002FFB1C /* AddBidViewController.swift */,
+				2BF35DDB21518F41002FFB1C /* ProductDetailsViewController.swift */,
 				2BF35DD92150716F002FFB1C /* ProductTableViewCell.swift */,
 				2BF35DD7214C43E9002FFB1C /* AddProductViewController.swift */,
 				2B09FAF8214331C400B7958A /* WelcomeViewController.swift */,
@@ -137,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				2BF35DD5214B1075002FFB1C /* CoreDataUtility.swift */,
+				2BF35DDF215309E7002FFB1C /* GeneralUtility.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -245,14 +260,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B7A2E32214227C5008C668E /* ViewController.swift in Sources */,
+				2BF35DE0215309E7002FFB1C /* GeneralUtility.swift in Sources */,
+				2BF35DDE2152E18B002FFB1C /* AddBidViewController.swift in Sources */,
 				2B7A2E31214227C5008C668E /* RegisterViewController.swift in Sources */,
 				2BF35DDA2150716F002FFB1C /* ProductTableViewCell.swift in Sources */,
+				2BF35DDC21518F41002FFB1C /* ProductDetailsViewController.swift in Sources */,
 				2BF35DD8214C43E9002FFB1C /* AddProductViewController.swift in Sources */,
+				2B120005215425D600197B67 /* BidsTableViewCell.swift in Sources */,
 				2BC25F5D213F0EEA00943CB5 /* AppDelegate.swift in Sources */,
 				2B09FAF9214331C400B7958A /* WelcomeViewController.swift in Sources */,
 				2B7A2E35214227D1008C668E /* User.swift in Sources */,
 				2B09FAF72142FC3700B7958A /* AIY.xcdatamodeld in Sources */,
 				2BF35DD6214B1075002FFB1C /* CoreDataUtility.swift in Sources */,
+				2B1200032154218E00197B67 /* BidsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
