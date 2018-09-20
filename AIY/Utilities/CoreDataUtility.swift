@@ -37,6 +37,7 @@ class CoreDataUtility {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Products")
         request.predicate = NSPredicate(format: "owner = %@", owner)
         request.returnsObjectsAsFaults = false
+        request.relationshipKeyPathsForPrefetching = ["bids"]
         do {
             print("Fetching from DB")
             let result = try context.fetch(request) as! [Products]
@@ -105,6 +106,7 @@ class CoreDataUtility {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Products")
         request.predicate = NSPredicate(format: "category = %@", category)
         request.returnsObjectsAsFaults = false
+        request.relationshipKeyPathsForPrefetching = ["bids"]
         do {
             print("Fetching from DB")
             let result = try context.fetch(request) as! [Products]

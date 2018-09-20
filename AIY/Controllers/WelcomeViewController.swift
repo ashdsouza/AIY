@@ -21,6 +21,15 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     var products = [Products]()
     var indexOfSelectedProduct: Int?
     
+    //pull to refresh table
+    lazy var refreshControl: UIRefreshControl = {
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshBidCount(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.red
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +37,8 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
         productTable.dataSource = self
 
         // Do any additional setup after loading the view.
+        self.productTable.addSubview(self.refreshControl)
+        
         guard let userNameSes = UserDefaults.standard.string(forKey: "userName") else {
             print("Unable to get username from session")
             return
@@ -67,6 +78,11 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
         return 1
     }
     
+    func refreshBidCount(_ refreshControl: UIRefreshControl) {
+        self.productTable.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         productTable.isHidden = false
         guard let cell = productTable.dequeueReusableCell(withIdentifier: "ProductTableViewCell", for: indexPath) as? ProductTableViewCell else {
@@ -74,19 +90,28 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         let prod = products[indexPath.row]
         cell.productTitle.text = prod.title
-        cell.buyersPrice.text = String(prod.buyPrice)
+        cell.buyersPrice.text = "$" + String(prod.buyPrice)
         if (prod.photo != nil) {
             cell.productImage.image = CoreDataUtility.getPhoto(prod.photo!, 100)
         }
         //TODO: Get bids for product and set the count here
-        cell.productBidCount.text = String(0)
+        let set = prod.bids
+        //TODO: Arrange bids based on different Seller comments or pricing
+        var bids = [Bids]()
+        bids = set?.allObjects as! [Bids]
+        cell.productBidCount.text = "Bids = " + String(bids.count)
         cell.accessoryType = .disclosureIndicator
+        cell.tintColor = UIColor.black
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return products.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
     
     //this segue is called when a row is selected to get more Product Details

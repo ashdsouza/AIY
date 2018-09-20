@@ -52,6 +52,20 @@ class ProductDetailsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddBid" {
+            let nvc = segue.destination as! UINavigationController
+            let svc = nvc.topViewController as! AddBidViewController
+            svc.product = productSelected
+        } else if segue.identifier == "ShowBids" {
+            let svc = segue.destination as! BidsTableViewController
+            
+            let set = productSelected?.bids
+            //TODO: Arrange bids based on different Seller comments or pricing
+            svc.allBids = set?.allObjects as! [Bids]
+        }
+    }
+    
     @IBAction func backToProductList(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }

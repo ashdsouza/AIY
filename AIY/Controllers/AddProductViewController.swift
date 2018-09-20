@@ -159,7 +159,7 @@ class AddProductViewController: UIViewController, UITextFieldDelegate, UITextVie
     //this function is called to validate before segue actually navigates
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         //validate that price is a number
-        if isDouble() {
+        if GeneralUtility.isDouble(self.productBuyPrice.text!) {
             invalidPriceError.isHidden = true
             return true
         } else {
@@ -187,15 +187,6 @@ class AddProductViewController: UIViewController, UITextFieldDelegate, UITextVie
         }
             
         addProductToDB(photo)
-    }
-    
-    func isDouble() -> Bool {
-        if let price = Double(self.productBuyPrice.text!) {
-            if price >= 0 {
-                return true
-            }
-        }
-        return false
     }
     
     func addProductToDB(_ photo: Data) {
