@@ -14,6 +14,7 @@
 		2B7A2E31214227C5008C668E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A2E2F214227C5008C668E /* RegisterViewController.swift */; };
 		2B7A2E32214227C5008C668E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A2E30214227C5008C668E /* ViewController.swift */; };
 		2B7A2E35214227D1008C668E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A2E34214227D1008C668E /* User.swift */; };
+		2BAA38FC215993090013118C /* BidDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAA38FB215993090013118C /* BidDetailsViewController.swift */; };
 		2BC25F5D213F0EEA00943CB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC25F5C213F0EEA00943CB5 /* AppDelegate.swift */; };
 		2BC25F62213F0EEA00943CB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC25F60213F0EEA00943CB5 /* Main.storyboard */; };
 		2BC25F64213F0EEA00943CB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BC25F63213F0EEA00943CB5 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		2B7A2E2F214227C5008C668E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2B7A2E30214227C5008C668E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2B7A2E34214227D1008C668E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2BAA38FB215993090013118C /* BidDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BidDetailsViewController.swift; path = Controllers/BidDetailsViewController.swift; sourceTree = "<group>"; };
 		2BC25F59213F0EEA00943CB5 /* AIY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC25F5C213F0EEA00943CB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BC25F61213F0EEA00943CB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				2BC25F5C213F0EEA00943CB5 /* AppDelegate.swift */,
 				2B09FAF52142FC3700B7958A /* AIY.xcdatamodeld */,
 				2BC25F60213F0EEA00943CB5 /* Main.storyboard */,
+				2BAA38FB215993090013118C /* BidDetailsViewController.swift */,
 				2B120004215425D600197B67 /* BidsTableViewCell.swift */,
 				2B1200022154218E00197B67 /* BidsTableViewController.swift */,
 				2BF35DDD2152E18B002FFB1C /* AddBidViewController.swift */,
@@ -270,6 +273,7 @@
 				2BC25F5D213F0EEA00943CB5 /* AppDelegate.swift in Sources */,
 				2B09FAF9214331C400B7958A /* WelcomeViewController.swift in Sources */,
 				2B7A2E35214227D1008C668E /* User.swift in Sources */,
+				2BAA38FC215993090013118C /* BidDetailsViewController.swift in Sources */,
 				2B09FAF72142FC3700B7958A /* AIY.xcdatamodeld in Sources */,
 				2BF35DD6214B1075002FFB1C /* CoreDataUtility.swift in Sources */,
 				2B1200032154218E00197B67 /* BidsTableViewController.swift in Sources */,

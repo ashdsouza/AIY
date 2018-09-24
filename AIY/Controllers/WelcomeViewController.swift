@@ -49,6 +49,9 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
         registeredUser.text = user.name
         profilePhoto.image = profileImage
         
+        //remove extra separators from table if few rows to show
+        productTable.tableFooterView = UIView(frame: .zero)
+        
         //Display "Add Product" button only if Buyer
         //if Buyer then load all products added by that buyer
         //if Seller then load all products in the Seller's category
@@ -63,8 +66,6 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if prods.count > 0 {
             products = prods
-        } else {
-            productTable.isHidden = true
         }
     }
 
@@ -75,7 +76,20 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //MARK: tableview functions
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        //Return 1 if there are products available to show
+        //Else show "No Products to show" in place of table data
+        var numOfSections: Int = 0
+        if products.count > 0 {
+            self.productTable.backgroundView = nil
+            numOfSections = 1
+        } else {
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.productTable.bounds.size.width, height: self.productTable.bounds.size.height))
+            noDataLabel.text = "No Products to show"
+            noDataLabel.textColor = UIColor.black
+            noDataLabel.textAlignment = NSTextAlignment.center
+            self.productTable.backgroundView = noDataLabel
+        }
+        return numOfSections
     }
     
     func refreshBidCount(_ refreshControl: UIRefreshControl) {
@@ -84,7 +98,6 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        productTable.isHidden = false
         guard let cell = productTable.dequeueReusableCell(withIdentifier: "ProductTableViewCell", for: indexPath) as? ProductTableViewCell else {
             fatalError("The dequeued cell is not an instance of ProductTableViewCell.")
         }
@@ -150,4 +163,13 @@ class WelcomeViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func logoutUser(_ sender: UIButton) {
+        //reset values stored in session
+        UserDefaults.standard.set("", forKey: "userName")
+        UserDefaults.standard.set("", forKey: "userType")
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+        let loginController = storyBoard.instantiateViewController(withIdentifier: "loginController") as! ViewController
+        
+        self.present(loginController, animated: true, completion: nil)
+    }
 }

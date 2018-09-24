@@ -31,6 +31,9 @@ class BidsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.bidsTableView.addSubview(self.refreshController)
+        
+        //remove extra separators from table if few rows to show
+        bidsTableView.tableFooterView = UIView(frame: .zero)
     }
     
     func refreshBids(_ refreshControl: UIRefreshControl) {
@@ -46,8 +49,20 @@ class BidsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        //Return 1 if there are bids available to show 
+        //Else show "No Bids Available" in place of table data
+        var numOfSections: Int = 0
+        if allBids.count > 0 {
+            self.bidsTableView.backgroundView = nil
+            numOfSections = 1
+        } else {
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bidsTableView.bounds.size.width, height: self.bidsTableView.bounds.size.height))
+            noDataLabel.text = "No Bids Available"
+            noDataLabel.textColor = UIColor.black
+            noDataLabel.textAlignment = NSTextAlignment.center
+            self.bidsTableView.backgroundView = noDataLabel
+        }
+        return numOfSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,6 +83,17 @@ class BidsTableViewController: UITableViewController {
         cell.accessoryType = .disclosureIndicator
         cell.tintColor = UIColor.black
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowBidDetail" {
+            
+            let indexPath = bidsTableView.indexPathForSelectedRow
+            let index = indexPath?.row
+            
+            let nvc = segue.destination as! BidDetailsViewController
+            nvc.bidSelected = allBids[index!]
+        }
     }
 
     /*
