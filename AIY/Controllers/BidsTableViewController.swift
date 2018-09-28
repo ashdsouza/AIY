@@ -34,6 +34,12 @@ class BidsTableViewController: UITableViewController {
         
         //remove extra separators from table if few rows to show
         bidsTableView.tableFooterView = UIView(frame: .zero)
+        
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setEditing(false, animated: true)
     }
     
     func refreshBids(_ refreshControl: UIRefreshControl) {
@@ -82,6 +88,7 @@ class BidsTableViewController: UITableViewController {
         cell.bidOwner.text = seller.name
         cell.accessoryType = .disclosureIndicator
         cell.tintColor = UIColor.black
+        
         return cell
     }
     
@@ -96,13 +103,17 @@ class BidsTableViewController: UITableViewController {
         }
     }
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.reloadData()
+    }
 
     /*
     // Override to support editing the table view.
