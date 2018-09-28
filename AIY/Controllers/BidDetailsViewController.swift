@@ -35,6 +35,9 @@ class BidDetailsViewController: UIViewController {
             sellerComments.text = "No Additional Comments"
         }
         sellerComments.text = bidSelected?.addComments
+        
+        //TODO: If bid belongs to the seller who is in session, it should be editable
+        //Owner of the bid should be able to edit bid by looking at other seller offerings
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,5 +55,15 @@ class BidDetailsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowSellerProfile" {
+            let svc = segue.destination as! SellerProfileViewController
+            svc.sellerUname = bidSelected?.owner
+        } else if segue.identifier == "ShowSellerReview" {
+            let nc = segue.destination as! UINavigationController
+            let svc = nc.topViewController as! RatingViewController
+            svc.seller = bidSelected?.owner
+        }
+    }
 
 }

@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G19009" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Bids" representedClassName="Bids" syncable="YES" codeGenerationType="class">
         <attribute name="addComments" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="madeSales" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="owner" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="products" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Products" inverseName="bids" inverseEntity="Products" syncable="YES"/>
@@ -17,6 +18,19 @@
         <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="bids" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Bids" inverseName="products" inverseEntity="Bids" syncable="YES"/>
+        <relationship name="users" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="products" inverseEntity="Users" syncable="YES"/>
+    </entity>
+    <entity name="Ratings" representedClassName="Ratings" syncable="YES" codeGenerationType="class">
+        <attribute name="outOf5" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="review" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="users" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="ratings" inverseEntity="Users" syncable="YES"/>
+    </entity>
+    <entity name="Sales" representedClassName="Sales" syncable="YES" codeGenerationType="class">
+        <attribute name="buyer" attributeType="String" syncable="YES"/>
+        <attribute name="product" attributeType="String" syncable="YES"/>
+        <attribute name="salesAmount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="seller" attributeType="String" syncable="YES"/>
+        <relationship name="users" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="sales" inverseEntity="Users" syncable="YES"/>
     </entity>
     <entity name="Users" representedClassName="Users" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,11 +39,16 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Products" inverseName="users" inverseEntity="Products" syncable="YES"/>
+        <relationship name="ratings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ratings" inverseName="users" inverseEntity="Ratings" syncable="YES"/>
+        <relationship name="sales" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sales" inverseName="users" inverseEntity="Sales" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Bids" positionX="151" positionY="-108" width="128" height="105"/>
+        <element name="Bids" positionX="151" positionY="-108" width="128" height="120"/>
         <element name="Category" positionX="-63" positionY="27" width="128" height="60"/>
-        <element name="Products" positionX="-72" positionY="-216" width="128" height="150"/>
-        <element name="Users" positionX="-290" positionY="-108" width="128" height="135"/>
+        <element name="Products" positionX="-72" positionY="-216" width="128" height="165"/>
+        <element name="Ratings" positionX="-72" positionY="-81" width="128" height="90"/>
+        <element name="Sales" positionX="-81" positionY="-90" width="128" height="120"/>
+        <element name="Users" positionX="-290" positionY="-108" width="128" height="180"/>
     </elements>
 </model>
