@@ -1,4 +1,4 @@
-# AIY
+# AIY (Auction It Yourself)
 iOS app that works on the idea of Reverse Auction.
 User can Register as a Buyer or a Seller.
 Buyer has a Dashboard to view the products he/she wishes to buy. 
